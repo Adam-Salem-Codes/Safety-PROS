@@ -1,3 +1,10 @@
+/**
+ * @file safety.h
+ * @brief Utility to help users check v5 devices using the PROS 4 api.
+ * @author Adam Salem
+ * @copyright Copyright (c) 2024 Adam Salem
+ */
+
 #pragma once
 
 #include "api.h"
