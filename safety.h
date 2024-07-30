@@ -201,47 +201,6 @@ namespace safety
         }
         return output.c_str();
     }
-
-    /**
-     * A function that continuously checks a list of devices for being unplugged and prints a message if a device is unplugged.
-     *  NOTE: It stops checking for devices once a one device is unplugged. You will have to restart the program to reinitialize.
-     * 
-     * \example
-     * ```cpp
-     * Task t(safety::task_check_devices(master, { devices } ));
-     * ```
-     *
-     * @param master The controller object used to rumble and print messages.
-     * @param devices The vector of devices to check for being plugged in.
-     *
-     * @return None
-     *
-     * @throws None
-     */
-    int task_check_devices(pros::v5::Controller master, std::vector<pros::v5::Device> devices)
-    {
-        // Loop indefinitely
-        while (true)
-        {
-            // Loop through each device in the vector
-            for (pros::v5::Device &device : devices)
-            {
-                // Check if the device is unplugged
-                if (!isPluggedIn(device.get_port()))
-                {
-                    // Rumble the controller and print a message
-                    master.rumble("---");
-                    master.print(0, 0, "DEVICE UNPLUGGED!!!");
-
-                    return 1; // Return 1 to stop the task
-                }
-            }
-            // Delay for 500ms before checking again
-            pros::delay(500);
-        }
-    }
-
-    
 } // namespace
 
 // Written by: Adam Salem for PROS 4.0
